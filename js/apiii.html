@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .img{
+            height: 200px;
+            width: 200px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Meal List</h1>
+    <div id="meal">
+        
+    </div>
+
+    <script>
+
+        async function  apiii() {
+                var apio = await fetch("https://www.themealdb.com/api/json/v1/1/filter.php?c=Dessert");
+                var apioo = await apio.json();
+                console.log(apioo['meals']);
+
+                var data=''
+                for(i=0;i<apioo['meals'].length;i++){
+                    data+=`<div class='item'>
+                            <img class='img' src=${apioo['meals'][i]['strMealThumb']}  height='100%' width='100%'/>
+                            <br/>${apioo['meals'][i]['strMeal']}
+                        </div>` 
+                }
+                document.getElementById('meal').innerHTML=data;
+
+        }
+        apiii()
+    </script>
+    
+</body>
+</html>
